@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 // import 'category_model.dart';
 
-class Article extends Equatable {
+class Food extends Equatable {
   final String id;
   final String title;
   final String subtitle;
@@ -13,7 +13,7 @@ class Article extends Equatable {
   final int views;
   final DateTime createdAt;
 
-  const Article({
+  const Food({
     required this.id,
     required this.title,
     required this.subtitle,
@@ -25,10 +25,10 @@ class Article extends Equatable {
     required this.views,
     required this.createdAt,
   });
-  static List<Article> articles = [
-    Article(
+  static List<Food> foods = [
+    Food(
       id: '1',
-      author: 'Prince I Nwanozie',
+      author: 'Nwanozie',
       authorImageUrl:
           'https://www.google.com/imgres?imgurl=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Flockport-ny-usa-july-small-typical-american-house-small-typical-american-house-166514313.jpg&imgrefurl=https%3A%2F%2Fwww.dreamstime.com%2Fphotos-images%2Ftypical-american-house.html&tbnid=GcsUn_h0RZixuM&vet=12ahUKEwiD94rDh9j6AhVByRoKHX5zCGwQMygFegUIARDtAQ..i&docid=A-uypSph1URPaM&w=800&h=451&q=united%20states%20house%20pictures&ved=2ahUKEwiD94rDh9j6AhVByRoKHX5zCGwQMygFegUIARDtAQ',
       title:
@@ -43,9 +43,9 @@ class Article extends Equatable {
           'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
       views: 1123,
     ),
-    Article(
+    Food(
       id: '2',
-      author: 'Samuel I Nwanozie',
+      author: 'Nwanozie',
       authorImageUrl:
           'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.worldatlas.com%2Fr%2Fw1200%2Fupload%2Feb%2Fed%2Fcc%2Fshutterstock-102409675.jpg&imgrefurl=https%3A%2F%2Fwww.worldatlas.com%2Farticles%2Famerica-s-most-popular-house-styles.html&tbnid=LVI2tFm9MclykM&vet=12ahUKEwiD94rDh9j6AhVByRoKHX5zCGwQMygDegUIARDpAQ..i&docid=kYtxqWR_nRkYRM&w=1100&h=734&q=united%20states%20house%20pictures&ved=2ahUKEwiD94rDh9j6AhVByRoKHX5zCGwQMygDegUIARDpAQ',
       title:
@@ -60,7 +60,7 @@ class Article extends Equatable {
           'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
       views: 2123,
     ),
-    Article(
+    Food(
       id: '3',
       author: 'Prince I Nwanozie',
       authorImageUrl:
@@ -77,7 +77,7 @@ class Article extends Equatable {
           'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
       views: 1123,
     ),
-    Article(
+    Food(
       id: '4',
       author: 'Prince I Nwanozie',
       authorImageUrl:
@@ -93,76 +93,9 @@ class Article extends Equatable {
       subtitle:
           'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
       views: 1123,
-    ),
-    Article(
-      id: '5',
-      author: 'Prince I Nwanozie',
-      authorImageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      title:
-          'Lorem ipsuim asdfo dfgjnsd ijndfgjn ijnfgijsdfgn iundgfsgooiunij gnuuniugdnnuniu iundguij iuabdgbij',
-      createdAt: DateTime.now().subtract(const Duration(hours: 9)),
-      body:
-          'ISDFG Isoifdoiwtg aeoringn oinrgwre oinadsvm oidnergn oindga;kjnioune iuneufeufqin iquwe iniunwe iuqowdukqu',
-      category: 'Politics',
-      imageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      subtitle:
-          'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
-      views: 6123,
-    ),
-    Article(
-      id: '6',
-      author: 'Prince I Nwanozie',
-      authorImageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      title:
-          'Lorem ipsuim asdfo dfgjnsd ijndfgjn ijnfgijsdfgn iundgfsgooiunij gnuuniugdnnuniu iundguij iuabdgbij',
-      createdAt: DateTime.now().subtract(const Duration(hours: 10)),
-      body:
-          'ISDFG Isoifdoiwtg aeoringn oinrgwre oinadsvm oidnergn oindga;kjnioune iuneufeufqin iquwe iniunwe iuqowdukqu',
-      category: 'Politics',
-      imageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      subtitle:
-          'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
-      views: 1123,
-    ),
-    Article(
-      id: '6',
-      author: 'Prince I Nwanozie',
-      authorImageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      title:
-          'Lorem ipsuim asdfo dfgjnsd ijndfgjn ijnfgijsdfgn iundgfsgooiunij gnuuniugdnnuniu iundguij iuabdgbij',
-      createdAt: DateTime.now().subtract(const Duration(hours: 10)),
-      body:
-          'ISDFG Isoifdoiwtg aeoringn oinrgwre oinadsvm oidnergn oindga;kjnioune iuneufeufqin iquwe iniunwe iuqowdukqu',
-      category: 'History',
-      imageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      subtitle:
-          'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
-      views: 1123,
-    ),
-    Article(
-      id: '6',
-      author: 'Prince I Nwanozie',
-      authorImageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      title:
-          'Lorem ipsuim asdfo dfgjnsd ijndfgjn ijnfgijsdfgn iundgfsgooiunij gnuuniugdnnuniu iundguij iuabdgbij',
-      createdAt: DateTime.now().subtract(const Duration(hours: 10)),
-      body:
-          'ISDFG Isoifdoiwtg aeoringn oinrgwre oinadsvm oidnergn oindga;kjnioune iuneufeufqin iquwe iniunwe iuqowdukqu',
-      category: 'Politics',
-      imageUrl:
-          'https://www.google.com/search?q=images+unsplash+com&sxsrf=ALiCzsbQPR6bPnQAPp-jq0ZNpsBuhYGNlw:1665006003925&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7rqbbhsr6AhVFOXoKHfLuBI0Q_AUoAXoECAEQAw&biw=1034&bih=563&dpr=1#imgrc=truT82QNEllSHM',
-      subtitle:
-          'iuefutbg iuweryfaef uyqwefhue fb yrbf yubrqe iuhbuhbefa uhassya uaeyvsdfhy uybdashfa uyybdsfhus asuy',
-      views: 1123,
-    ),
+    )
   ];
+
   @override
   // ignore: todo
   // TODO: implement props

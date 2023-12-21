@@ -101,7 +101,7 @@ class _BreakingNews extends StatelessWidget {
                             maxLines: 3,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,

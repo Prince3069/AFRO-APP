@@ -33,6 +33,8 @@ class _SettingPageState extends State<SettingPage> {
       body: Container(
           padding: const EdgeInsets.only(left: 16, right: 16, top: 25),
           child: ListView(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
             children: [
               const Text(
                 'Settings',
@@ -41,8 +43,8 @@ class _SettingPageState extends State<SettingPage> {
               const SizedBox(
                 height: 40,
               ),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Icon(Icons.person, color: Colors.grey),
                   SizedBox(
                     width: 10,
@@ -68,8 +70,8 @@ class _SettingPageState extends State<SettingPage> {
               const SizedBox(
                 height: 40,
               ),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Icon(Icons.volume_up_outlined, color: Colors.grey),
                   SizedBox(
                     width: 10,
@@ -140,9 +142,9 @@ class _SettingPageState extends State<SettingPage> {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text(title),
-                content: Column(
+                content: const Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
+                  children: [
                     Text('Option 1'),
                     Text('Option 2'),
                     Text('Option 3'),

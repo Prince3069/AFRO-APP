@@ -1,17 +1,17 @@
-import 'package:afro_caribbean/models/article_model.dart';
+import 'package:afro_caribbean/models/sport_model.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_tag.dart';
 import '../widgets/image_container.dart';
 
-class ArticleScreen extends StatelessWidget {
-  const ArticleScreen({super.key});
-  static const routeName = '/article';
+class SportScreen extends StatelessWidget {
+  const SportScreen({super.key});
+  static const routeName = '/sport';
   @override
   Widget build(BuildContext context) {
-    final article = ModalRoute.of(context)!.settings.arguments as Article;
+    final sport = ModalRoute.of(context)!.settings.arguments as Sport;
     return ImageContainer(
-        imageUrl: article.imageUrl,
+        imageUrl: sport.imageUrl,
         width: double.infinity,
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -24,7 +24,7 @@ class ArticleScreen extends StatelessWidget {
           body: ListView(
             children: [
               _NewsHeadline(
-                article: article,
+                sport: sport,
               ),
               Container(
                 padding: const EdgeInsets.all(20),
@@ -47,10 +47,10 @@ class ArticleScreen extends StatelessWidget {
                             CircleAvatar(
                               radius: 10,
                               backgroundImage:
-                                  NetworkImage(article.authorImageUrl),
+                                  NetworkImage(sport.authorImageUrl),
                             ),
                             Text(
-                              article.author,
+                              sport.author,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -73,7 +73,7 @@ class ArticleScreen extends StatelessWidget {
                               color: Colors.grey,
                             ),
                             Text(
-                                '${DateTime.now().difference(article.createdAt).inHours} hr',
+                                '${DateTime.now().difference(sport.createdAt).inHours} hr',
                                 style: const TextStyle(fontSize: 12)),
                             Image.network(
                                 "https://www.google.com/imgres?imgurl=https%3A%2F%2Fbusinesstrumpet.com%2Fwp-content%2Fuploads%2F2020%2F06%2FUniversity-of-Nigeria-799x445.jpg&imgrefurl=https%3A%2F%2Fbusinesstrumpet.com%2Ffour-nigerian-universities-ranked-among-the-top-1400-universities-in-the-world%2F&tbnid=ousT9Wt5uZZi8M&vet=12ahUKEwih1s7Pud36AhX0pycCHUhxDxkQMygCegUIARDgAQ..i&docid=QDDrK2_VD93KEM&w=799&h=445&q=photos%20of%20nigerian%20universities&ved=2ahUKEwih1s7Pud36AhX0pycCHUhxDxkQMygCegUIARDgAQ")
@@ -97,7 +97,7 @@ class ArticleScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      article.title,
+                      sport.title,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
@@ -107,7 +107,7 @@ class ArticleScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      article.body,
+                      sport.body,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -126,7 +126,7 @@ class ArticleScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return ImageContainer(
                           width: MediaQuery.of(context).size.width * 0.42,
-                          imageUrl: article.imageUrl,
+                          imageUrl: sport.imageUrl,
                           margin: const EdgeInsets.only(right: 5, top: 5),
                         );
                       },
@@ -142,10 +142,10 @@ class ArticleScreen extends StatelessWidget {
 
 class _NewsHeadline extends StatelessWidget {
   const _NewsHeadline({
-    required this.article,
+    required this.sport,
     Key? key,
   }) : super(key: key);
-  final Article article;
+  final Sport sport;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -159,7 +159,7 @@ class _NewsHeadline extends StatelessWidget {
             backgroundColor: Colors.grey.withAlpha(150),
             children: [
               Text(
-                article.category,
+                sport.category,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -171,7 +171,7 @@ class _NewsHeadline extends StatelessWidget {
             height: 10,
           ),
           Text(
-            article.title,
+            sport.title,
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                 color: Colors.white, fontWeight: FontWeight.bold, height: 1),
           ),
@@ -179,7 +179,7 @@ class _NewsHeadline extends StatelessWidget {
             height: 10,
           ),
           Text(
-            article.title,
+            sport.title,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Colors.white, fontWeight: FontWeight.bold, height: 1),
           ),

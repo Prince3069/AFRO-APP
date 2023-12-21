@@ -20,8 +20,8 @@ class ProfileScreen extends StatelessWidget {
           elevation: 1,
           leading: IconButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => SettingPage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const SettingPage()));
             },
             icon: const Icon(
               Icons.settings,
@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
         bottomNavigationBar: const BottomNavBar(index: 2),
         body: ListView(
           scrollDirection: Axis.vertical,
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           shrinkWrap: true,
           padding: const EdgeInsets.all(10),
           children: const [_ProfilePage()],
@@ -50,6 +50,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class _ProfilePage extends StatefulWidget {
+  // ignore: unused_element
   const _ProfilePage({super.key});
 
   @override
@@ -69,6 +70,7 @@ class _ProfilePageState extends State<_ProfilePage> {
         },
         child: ListView(
           shrinkWrap: true,
+          scrollDirection: Axis.vertical,
           children: [
             const Text(
               'Edit Profile',
@@ -132,34 +134,37 @@ class _ProfilePageState extends State<_ProfilePage> {
             BuildTextField('Password', '**********', true),
             BuildTextField('Country', 'Nigeria', false),
             const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: OutlinedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Cancel',
-                        style: TextStyle(
-                            fontSize: 16,
-                            letterSpacing: 2.2,
-                            color: Colors.black),
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Save',
-                        style: TextStyle(
-                            fontSize: 16,
-                            letterSpacing: 2.2,
-                            color: Colors.white),
-                      )),
-                )
-              ],
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: OutlinedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                              fontSize: 16,
+                              letterSpacing: 2.2,
+                              color: Colors.black),
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Save',
+                          style: TextStyle(
+                              fontSize: 16,
+                              letterSpacing: 2.2,
+                              color: Colors.white),
+                        )),
+                  )
+                ],
+              ),
             )
           ],
         ),
