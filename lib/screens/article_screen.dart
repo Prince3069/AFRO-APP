@@ -10,6 +10,7 @@ class ArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final article = ModalRoute.of(context)!.settings.arguments as Article;
+
     return ImageContainer(
         imageUrl: article.imageUrl,
         width: double.infinity,

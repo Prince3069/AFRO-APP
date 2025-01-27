@@ -54,446 +54,441 @@ class __CategoryNewsState extends State<_CategoryNews> {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Scaffold(
-        body: Container(
-          child: DefaultTabController(
-              length: 4,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Material(
-                      child: Container(
-                        // height: MediaQuery.of(context).size.height,
-                        height: 45,
-                        color: Colors.white,
-                        child: TabBar(
-                          isScrollable: true,
-                          indicatorColor: Colors.black,
-                          // physics: ClampingScrollPhysics(),
-                          // padding: EdgeInsets.only(
-                          //   top: 10,
-                          // ),
-                          // unselectedLabelColor: Color.fromARGB(255, 65, 45, 136),
-                          // indicatorSize: TabBarIndicatorSize.label,
-                          indicator: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey),
-                          tabs: [
-                            Tab(
+        body: DefaultTabController(
+            length: 4,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Material(
+                    child: Container(
+                      // height: MediaQuery.of(context).size.height,
+                      height: 45,
+                      color: Colors.white,
+                      child: TabBar(
+                        isScrollable: true,
+                        indicatorColor: Colors.black,
+                        // physics: ClampingScrollPhysics(),
+                        // padding: EdgeInsets.only(
+                        //   top: 10,
+                        // ),
+                        // unselectedLabelColor: Color.fromARGB(255, 65, 45, 136),
+                        // indicatorSize: TabBarIndicatorSize.label,
+                        indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey),
+                        tabs: [
+                          Tab(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("History",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall!
+                                      .copyWith(fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                          Tab(
+                            child: SizedBox(
+                              height: 50,
+                              // decoration: BoxDecoration(
+                              //     borderRadius: BorderRadius.circular(20),
+                              //     border:
+                              //         Border.all(color: Colors.pinkAccent)),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Text("History",
+                                child: Text("Science",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall!
                                         .copyWith(fontWeight: FontWeight.bold)),
                               ),
                             ),
-                            Tab(
-                              child: SizedBox(
-                                height: 50,
-                                // decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(20),
-                                //     border:
-                                //         Border.all(color: Colors.pinkAccent)),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text("Science",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold)),
-                                ),
+                          ),
+                          Tab(
+                            child: SizedBox(
+                              height: 50,
+                              // decoration: BoxDecoration(
+                              //     borderRadius: BorderRadius.circular(20),
+                              //     border:
+                              //         Border.all(color: Colors.pinkAccent)),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text("Food",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineSmall!
+                                        .copyWith(fontWeight: FontWeight.bold)),
                               ),
-                            ),
-                            Tab(
-                              child: SizedBox(
-                                height: 50,
-                                // decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(20),
-                                //     border:
-                                //         Border.all(color: Colors.pinkAccent)),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text("Food",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold)),
-                                ),
-                              ),
-                            ),
-                            Tab(
-                              child: SizedBox(
-                                height: 50,
-                                // decoration: BoxDecoration(
-                                //     borderRadius: BorderRadius.circular(20),
-                                //     border:
-                                //         Border.all(color: Colors.pinkAccent)),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text("Sports",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                            // height: 100,
-                            // width: 50,
-                            ),
-                        Expanded(
-                          child: SizedBox(
-                            // height: 200,
-                            // width: double.infinity,
-                            height: MediaQuery.of(context).size.height,
-                            child: TabBarView(
-                              children: [
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  padding: const EdgeInsets.only(top: 10),
-                                  itemCount: articles.length,
-                                  separatorBuilder:
-                                      ((BuildContext context, int index) =>
-                                          const Divider()),
-                                  itemBuilder: ((context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, ArticleScreen.routeName,
-                                            arguments: articles[index]);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          ImageContainer(
-                                            width: 100,
-                                            height: 80,
-                                            margin: const EdgeInsets.only(
-                                                top: 10, right: 10, bottom: 10),
-                                            borderRadius: 0.1,
-                                            imageUrl: articles[index].imageUrl,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  articles[index].title,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.clip,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.schedule,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                        '${DateTime.now().difference(articles[index].createdAt).inHours} hr',
-                                                        style: const TextStyle(
-                                                            fontSize: 12)),
-                                                    const SizedBox(width: 20),
-                                                    const Icon(
-                                                      Icons.visibility,
-                                                      size: 18,
-                                                    ),
-                                                    Text(
-                                                      '${articles[index].views}views',
-                                                      style: const TextStyle(
-                                                          fontSize: 12),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 25,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                                ),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  padding: const EdgeInsets.only(top: 10),
-                                  itemCount: sciences.length,
-                                  separatorBuilder:
-                                      ((BuildContext context, int index) =>
-                                          const Divider()),
-                                  itemBuilder: ((context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, ArticleScreen.routeName,
-                                            arguments: sciences[index]);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          ImageContainer(
-                                            width: 100,
-                                            height: 80,
-                                            margin: const EdgeInsets.only(
-                                                top: 10, right: 10, bottom: 10),
-                                            borderRadius: 0.1,
-                                            imageUrl: sciences[index].imageUrl,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  sciences[index].title,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.clip,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.schedule,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                        '${DateTime.now().difference(sciences[index].createdAt).inHours} hr',
-                                                        style: const TextStyle(
-                                                            fontSize: 12)),
-                                                    const SizedBox(width: 20),
-                                                    const Icon(
-                                                      Icons.visibility,
-                                                      size: 18,
-                                                    ),
-                                                    Text(
-                                                      '${sciences[index].views}views',
-                                                      style: const TextStyle(
-                                                          fontSize: 12),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 25,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                                ),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  padding: const EdgeInsets.only(top: 10),
-                                  itemCount: foods.length,
-                                  separatorBuilder:
-                                      ((BuildContext context, int index) =>
-                                          const Divider()),
-                                  itemBuilder: ((context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, ArticleScreen.routeName,
-                                            arguments: foods[index]);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          ImageContainer(
-                                            width: 100,
-                                            height: 80,
-                                            margin: const EdgeInsets.only(
-                                                top: 10, right: 10, bottom: 10),
-                                            borderRadius: 0.1,
-                                            imageUrl: foods[index].imageUrl,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  foods[index].title,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.clip,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.schedule,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                        '${DateTime.now().difference(foods[index].createdAt).inHours} hr',
-                                                        style: const TextStyle(
-                                                            fontSize: 12)),
-                                                    const SizedBox(width: 20),
-                                                    const Icon(
-                                                      Icons.visibility,
-                                                      size: 18,
-                                                    ),
-                                                    Text(
-                                                      '${foods[index].views}views',
-                                                      style: const TextStyle(
-                                                          fontSize: 12),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 25,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                                ),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  padding: const EdgeInsets.only(top: 10),
-                                  itemCount: sports.length,
-                                  separatorBuilder:
-                                      ((BuildContext context, int index) =>
-                                          const Divider()),
-                                  itemBuilder: ((context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, ArticleScreen.routeName,
-                                            arguments: sports[index]);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          ImageContainer(
-                                            width: 100,
-                                            height: 80,
-                                            margin: const EdgeInsets.only(
-                                                top: 10, right: 10, bottom: 10),
-                                            borderRadius: 0.1,
-                                            imageUrl: sports[index].imageUrl,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  sports[index].title,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.clip,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.schedule,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    Text(
-                                                        '${DateTime.now().difference(sports[index].createdAt).inHours} hr',
-                                                        style: const TextStyle(
-                                                            fontSize: 12)),
-                                                    const SizedBox(width: 20),
-                                                    const Icon(
-                                                      Icons.visibility,
-                                                      size: 18,
-                                                    ),
-                                                    Text(
-                                                      '${sports[index].views}views',
-                                                      style: const TextStyle(
-                                                          fontSize: 12),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 25,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                                ),
-                                // Center(
-                                //   child: Text("History"),
-                              ],
                             ),
                           ),
+                          Tab(
+                            child: SizedBox(
+                              height: 50,
+                              // decoration: BoxDecoration(
+                              //     borderRadius: BorderRadius.circular(20),
+                              //     border:
+                              //         Border.all(color: Colors.pinkAccent)),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text("Sports",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineSmall!
+                                        .copyWith(fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                          // height: 100,
+                          // width: 50,
+                          ),
+                      Expanded(
+                        child: SizedBox(
+                          // height: 200,
+                          // width: double.infinity,
+                          height: MediaQuery.of(context).size.height,
+                          child: TabBarView(
+                            children: [
+                              ListView.separated(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                padding: const EdgeInsets.only(top: 10),
+                                itemCount: articles.length,
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        const Divider()),
+                                itemBuilder: ((context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ArticleScreen.routeName,
+                                          arguments: articles[index]);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        ImageContainer(
+                                          width: 100,
+                                          height: 80,
+                                          margin: const EdgeInsets.only(
+                                              top: 10, right: 10, bottom: 10),
+                                          borderRadius: 0.1,
+                                          imageUrl: articles[index].imageUrl,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                articles[index].title,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.clip,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.schedule,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                      '${DateTime.now().difference(articles[index].createdAt).inHours} hr',
+                                                      style: const TextStyle(
+                                                          fontSize: 12)),
+                                                  const SizedBox(width: 20),
+                                                  const Icon(
+                                                    Icons.visibility,
+                                                    size: 18,
+                                                  ),
+                                                  Text(
+                                                    '${articles[index].views}views',
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                padding: const EdgeInsets.only(top: 10),
+                                itemCount: sciences.length,
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        const Divider()),
+                                itemBuilder: ((context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ArticleScreen.routeName,
+                                          arguments: sciences[index]);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        ImageContainer(
+                                          width: 100,
+                                          height: 80,
+                                          margin: const EdgeInsets.only(
+                                              top: 10, right: 10, bottom: 10),
+                                          borderRadius: 0.1,
+                                          imageUrl: sciences[index].imageUrl,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                sciences[index].title,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.clip,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.schedule,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                      '${DateTime.now().difference(sciences[index].createdAt).inHours} hr',
+                                                      style: const TextStyle(
+                                                          fontSize: 12)),
+                                                  const SizedBox(width: 20),
+                                                  const Icon(
+                                                    Icons.visibility,
+                                                    size: 18,
+                                                  ),
+                                                  Text(
+                                                    '${sciences[index].views}views',
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                padding: const EdgeInsets.only(top: 10),
+                                itemCount: foods.length,
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        const Divider()),
+                                itemBuilder: ((context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ArticleScreen.routeName,
+                                          arguments: foods[index]);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        ImageContainer(
+                                          width: 100,
+                                          height: 80,
+                                          margin: const EdgeInsets.only(
+                                              top: 10, right: 10, bottom: 10),
+                                          borderRadius: 0.1,
+                                          imageUrl: foods[index].imageUrl,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                foods[index].title,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.clip,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.schedule,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                      '${DateTime.now().difference(foods[index].createdAt).inHours} hr',
+                                                      style: const TextStyle(
+                                                          fontSize: 12)),
+                                                  const SizedBox(width: 20),
+                                                  const Icon(
+                                                    Icons.visibility,
+                                                    size: 18,
+                                                  ),
+                                                  Text(
+                                                    '${foods[index].views}views',
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                padding: const EdgeInsets.only(top: 10),
+                                itemCount: sports.length,
+                                separatorBuilder:
+                                    ((BuildContext context, int index) =>
+                                        const Divider()),
+                                itemBuilder: ((context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ArticleScreen.routeName,
+                                          arguments: sports[index]);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        ImageContainer(
+                                          width: 100,
+                                          height: 80,
+                                          margin: const EdgeInsets.only(
+                                              top: 10, right: 10, bottom: 10),
+                                          borderRadius: 0.1,
+                                          imageUrl: sports[index].imageUrl,
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                sports[index].title,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.clip,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.schedule,
+                                                    size: 18,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                      '${DateTime.now().difference(sports[index].createdAt).inHours} hr',
+                                                      style: const TextStyle(
+                                                          fontSize: 12)),
+                                                  const SizedBox(width: 20),
+                                                  const Icon(
+                                                    Icons.visibility,
+                                                    size: 18,
+                                                  ),
+                                                  Text(
+                                                    '${sports[index].views}views',
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                              // Center(
+                              //   child: Text("History"),
+                            ],
+                          ),
                         ),
-                      ],
-                    )
-                  ],
-                ),
-              )),
-        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )),
       ),
     );
   }
