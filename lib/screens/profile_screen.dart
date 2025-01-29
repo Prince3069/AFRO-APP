@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/bottom_nav_bar.dart';
 // ignore: unused_import
-import 'edit_profile_screen.dart';
 
 // ignore: must_be_immutable
 class ProfileScreen extends StatelessWidget {

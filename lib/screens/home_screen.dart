@@ -1,197 +1,130 @@
-// ignore: unused_import
-import 'package:afro_caribbean/models/article_model.dart';
-import 'package:afro_caribbean/screens/screens.dart';
-import 'package:afro_caribbean/widgets/custom_tag.dart';
+import 'package:afro_caribbean/screens/article_screen.dart';
+import 'package:afro_caribbean/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'news_service.dart';
+import 'article_model.dart';
+// ignore: unused_import
+import 'package:afro_caribbean/main.dart';
 
-import '../widgets/bottom_nav_bar.dart';
-import '../widgets/image_container.dart';
+// ignore: use_key_in_widget_constructors
+class HomeScreen extends StatefulWidget {
+  static const String routeName = '/home';
+  @override
+  // ignore: library_private_types_in_public_api
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class _HomeScreenState extends State<HomeScreen> {
+  String selectedCountry = '';
+  String selectedCategory = 'general'; // Default category
+  late Future<List<Article>> articlesFuture;
 
-  static const routeName = '/';
+  @override
+  void initState() {
+    super.initState();
+    articlesFuture = NewsService.fetchArticles(
+        country: selectedCountry, category: selectedCategory);
+  }
 
   @override
   Widget build(BuildContext context) {
-    Article article = Article.articles[0];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Transform.scale(
-          scale: 1.5,
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-            color: Colors.black,
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black),
+          onPressed: () {},
         ),
       ),
       bottomNavigationBar: const BottomNavBar(index: 0),
-      extendBodyBehindAppBar: true,
-      body: ListView(
-        padding: EdgeInsets.zero,
+      body: Column(
         children: [
-          _NewsOfTheDay(article: article),
-          _BreakingNews(articles: Article.articles),
-        ],
-      ),
-    );
-  }
-}
-
-class _BreakingNews extends StatelessWidget {
-  const _BreakingNews({
-    Key? key,
-    required this.articles,
-  }) : super(key: key);
-  final List<Article> articles;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Top News Update',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-              Text('More', style: Theme.of(context).textTheme.bodyLarge!),
-            ],
+          // Country Dropdown
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DropdownButtonFormField<String>(
+              decoration: const InputDecoration(labelText: 'Select Country'),
+              value: selectedCountry.isEmpty ? null : selectedCountry,
+              items: const [
+                DropdownMenuItem(value: '', child: Text('All Countries')),
+                DropdownMenuItem(value: 'us', child: Text('United States')),
+                DropdownMenuItem(value: 'ng', child: Text('Nigeria')),
+                DropdownMenuItem(value: 'gb', child: Text('United Kingdom')),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  selectedCountry = value ?? '';
+                  articlesFuture = NewsService.fetchArticles(
+                      country: selectedCountry, category: selectedCategory);
+                });
+              },
+            ),
           ),
-          const SizedBox(
-            height: 20,
+          // Category Dropdown
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DropdownButtonFormField<String>(
+              decoration: const InputDecoration(labelText: 'Select Category'),
+              value: selectedCategory,
+              items: const [
+                DropdownMenuItem(value: 'general', child: Text('General')),
+                DropdownMenuItem(value: 'business', child: Text('Business')),
+                DropdownMenuItem(value: 'sports', child: Text('Sports')),
+                DropdownMenuItem(
+                    value: 'technology', child: Text('Technology')),
+                DropdownMenuItem(value: 'health', child: Text('Health')),
+                DropdownMenuItem(value: 'food', child: Text('Food')),
+                DropdownMenuItem(value: 'travel', child: Text('Travel')),
+                DropdownMenuItem(value: 'politics', child: Text('Politics')),
+                DropdownMenuItem(
+                    value: 'entertainment', child: Text('Entertainment')),
+                DropdownMenuItem(value: 'science', child: Text('Science')),
+                DropdownMenuItem(value: 'world', child: Text('World News')),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  selectedCategory = value ?? 'general';
+                  articlesFuture = NewsService.fetchArticles(
+                      country: selectedCountry, category: selectedCategory);
+                });
+              },
+            ),
           ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: articles.length,
-                itemBuilder: ((context, index) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width * 0.40,
-                    margin: const EdgeInsets.only(right: 10.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          ArticleScreen.routeName,
-                          arguments: articles[index],
-                        );
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ImageContainer(
-                              width: MediaQuery.of(context).size.width * 0.40,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              imageUrl: articles[index].imageUrl),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            articles[index].title,
-                            maxLines: 3,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    height: 1),
-                          ),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                              '${DateTime.now().difference(articles[index].createdAt).inHours} hours ago',
-                              maxLines: 2,
-                              style: Theme.of(context).textTheme.bodySmall!),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          Text('by ${articles[index].author}',
-                              maxLines: 2,
-                              style: Theme.of(context).textTheme.bodyMedium!),
-                        ],
-                      ),
-                    ),
+          // Articles List
+          Expanded(
+            child: FutureBuilder<List<Article>>(
+              future: articlesFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No articles found.'));
+                } else {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      final article = snapshot.data![index];
+                      return ListTile(
+                        title: Text(article.title),
+                        subtitle: Text(article.author),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ArticleScreen
+                                .routeName, // Use the correct route name
+                            arguments: article, // Pass article data
+                          );
+                        },
+                      );
+                    },
                   );
-                })),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _NewsOfTheDay extends StatelessWidget {
-  const _NewsOfTheDay({
-    Key? key,
-    required this.article,
-  }) : super(key: key);
-
-  final Article article;
-
-  @override
-  Widget build(BuildContext context) {
-    return ImageContainer(
-      height: MediaQuery.of(context).size.height * 0.45,
-      width: double.infinity,
-      imageUrl: article.imageUrl,
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          CustomTag(
-            backgroundColor: Colors.grey.withAlpha(150),
-            children: [
-              Text(
-                'News of the day',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: Colors.white),
-              ),
-            ],
+                }
+              },
+            ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(article.title,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  height: 1.25,
-                  color: Colors.white)),
-          TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: Row(
-                children: [
-                  Text(
-                    'Learn More',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(color: Colors.white),
-                  ),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  const Icon(
-                    Icons.arrow_right_alt,
-                    color: Colors.white,
-                  )
-                ],
-              )),
         ],
       ),
     );
