@@ -69,6 +69,7 @@
 import 'package:afro_caribbean/screens/article_model.dart';
 import 'package:afro_caribbean/screens/category_screen.dart';
 import 'package:afro_caribbean/screens/discover_screen.dart';
+import 'package:afro_caribbean/screens/learn_screen.dart';
 import 'package:afro_caribbean/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
@@ -90,8 +91,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(), // Use home instead of initialRoute
+      home: const HomeScreen(), // Use home instead of initialRoute
       routes: {
+        LearnScreen.routeName: (context) => const LearnScreen(),
         ArticleScreen.routeName: (context) {
           final article = ModalRoute.of(context)!.settings.arguments as Article;
           return ArticleScreen(article: article);
