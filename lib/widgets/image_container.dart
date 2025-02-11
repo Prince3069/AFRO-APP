@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ImageContainer extends StatelessWidget {
   const ImageContainer({
-    Key? key,
+    super.key,
     this.height = 25,
     this.borderRadius = 20,
     required this.width,
@@ -11,7 +11,7 @@ class ImageContainer extends StatelessWidget {
     this.margin,
     this.child,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;

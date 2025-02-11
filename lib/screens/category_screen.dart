@@ -6,7 +6,7 @@ import 'article_screen.dart' as article_page; // Use alias 'article_page'
 class CategoryScreen extends StatelessWidget {
   final String category;
 
-  const CategoryScreen({Key? key, required this.category}) : super(key: key);
+  const CategoryScreen({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {

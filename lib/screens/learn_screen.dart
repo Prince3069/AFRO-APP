@@ -1,9 +1,11 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 
 class LearnScreen extends StatelessWidget {
   static const String routeName = '/learn';
 
-  const LearnScreen({Key? key}) : super(key: key);
+  const LearnScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -149,11 +151,11 @@ class _CategoryTile extends StatelessWidget {
   final VoidCallback onTap;
 
   const _CategoryTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -190,11 +192,11 @@ class _CourseCard extends StatelessWidget {
   final String imageUrl;
 
   const _CourseCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.instructor,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -235,6 +235,8 @@
 //     );
 //   }
 
+// ignore_for_file: unused_element, library_private_types_in_public_api
+
 //   IconData _getCategoryIcon(String category) {
 //     switch (category) {
 //       case 'sports':
@@ -266,8 +268,7 @@ import 'article_model.dart';
 
 class DiscoverScreen extends StatefulWidget {
   static const String routeName = '/discover';
-  const DiscoverScreen({Key? key, required this.selectedCountry})
-      : super(key: key);
+  const DiscoverScreen({super.key, required this.selectedCountry});
 
   final String selectedCountry;
 
@@ -408,8 +409,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 // 📰 Improved Card UI for Articles
 class _TrendingArticleCard extends StatelessWidget {
   final Article article;
-  const _TrendingArticleCard({Key? key, required this.article})
-      : super(key: key);
+  const _TrendingArticleCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -474,8 +474,7 @@ class _TrendingArticleCard extends StatelessWidget {
 class _CategoryTile extends StatelessWidget {
   final String title;
   final String category;
-  const _CategoryTile({Key? key, required this.title, required this.category})
-      : super(key: key);
+  const _CategoryTile({super.key, required this.title, required this.category});
 
   @override
   Widget build(BuildContext context) {
