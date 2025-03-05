@@ -1,0 +1,2 @@
+C:/Users/princ/Desktop/Flutter/afro_caribbean_new/android/app/.cxx/Debug/v4s6s6i3/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/princ/Desktop/Flutter/afro_caribbean_new/android/app/.cxx/Debug/v4s6s6i3/armeabi-v7a/CMakeFiles/rebuild_cache.dir

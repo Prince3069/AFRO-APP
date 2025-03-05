@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "761773474835",
+    "project_id": "afro-app-d1504",
+    "storage_bucket": "afro-app-d1504.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761773474835:android:6a8add0f191ba6ccc86be6",
+        "android_client_info": {
+          "package_name": "com.example.afro_caribbean"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByLI02JD9QMNgTjmMViYzCxie-aIxfII8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761773474835:android:83a3f2f4ee3560c3c86be6",
+        "android_client_info": {
+          "package_name": "com.example.afro_caribbean_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByLI02JD9QMNgTjmMViYzCxie-aIxfII8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
