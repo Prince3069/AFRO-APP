@@ -5,9 +5,9 @@ import 'article_model.dart';
 
 class DiscoverScreen extends StatefulWidget {
   static const String routeName = '/discover';
-  final String selectedCountry;
+  final String selectedCountryCode;
 
-  const DiscoverScreen({super.key, required this.selectedCountry});
+  const DiscoverScreen({super.key, required this.selectedCountryCode});
 
   @override
   _DiscoverScreenState createState() => _DiscoverScreenState();
@@ -15,7 +15,7 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   late Future<List<Article>> trendingArticles;
-  late String currentCountry; // Store the current country
+  late String currentCountry;
 
   final List<String> categories = [
     'business',
@@ -28,26 +28,58 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     'world',
   ];
 
+  final Map<String, String> countryMap = {
+    'us': 'United States',
+    'ai': 'Anguilla',
+    'ag': 'Antigua and Barbuda',
+    'aw': 'Aruba',
+    'bs': 'The Bahamas',
+    'bb': 'Barbados',
+    'vg': 'British Virgin Islands',
+    'ky': 'Cayman Islands',
+    'cu': 'Cuba',
+    'dm': 'Dominica',
+    'do': 'Dominican Republic',
+    'gd': 'Grenada',
+    'gp': 'Guadeloupe',
+    'ht': 'Haiti',
+    'jm': 'Jamaica',
+    'mq': 'Martinique',
+    'an': 'Netherlands Antilles',
+    'pr': 'Puerto Rico',
+    'bl': 'St Barts',
+    'kn': 'St Kitts and Nevis',
+    'lc': 'St Lucia',
+    'mf': 'St Martin',
+    'vc': 'St Vincent',
+    'tt': 'Trinidad and Tobago',
+    'tc': 'Turks and Caicos',
+
+    'ng': 'Nigeria',
+    'za': 'South Africa',
+    'eg': 'Egypt',
+    'dz': 'Algeria',
+    'ma': 'Morocco',
+    'et': 'Ethiopia',
+    'ke': 'Kenya',
+    'ao': 'Angola',
+    'gh': 'Ghana',
+    'tz': 'Tanzania',
+    'ci': 'Ivory Coast',
+    'cd': 'Democratic Republic of the Congo',
+    'sd': 'Sudan',
+    'sn': 'Senegal',
+    'ly': 'Libya',
+  };
+
   @override
   void initState() {
     super.initState();
     currentCountry =
-        widget.selectedCountry.isNotEmpty
-            ? widget.selectedCountry
-            : 'ng'; // Default to Jamaica
+        countryMap.containsKey(widget.selectedCountryCode)
+            ? widget.selectedCountryCode
+            : 'us';
     _fetchTrendingArticles();
-  }
-
-  @override
-  void didUpdateWidget(covariant DiscoverScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.selectedCountry != widget.selectedCountry &&
-        widget.selectedCountry.isNotEmpty) {
-      setState(() {
-        currentCountry = widget.selectedCountry;
-      });
-      _fetchTrendingArticles();
-    }
   }
 
   void _fetchTrendingArticles() {
@@ -74,15 +106,27 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search news...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              onSubmitted: (query) {},
+            // Country Dropdown
+            DropdownButton<String>(
+              value: currentCountry,
+              isExpanded: true,
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  setState(() {
+                    currentCountry = newValue;
+                  });
+                  _fetchTrendingArticles();
+                }
+              },
+              items:
+                  countryMap.keys.map<DropdownMenuItem<String>>((
+                    String countryCode,
+                  ) {
+                    return DropdownMenuItem<String>(
+                      value: countryCode,
+                      child: Text(countryMap[countryCode]!),
+                    );
+                  }).toList(),
             ),
             const SizedBox(height: 24),
             Text(
@@ -101,7 +145,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   return _CategoryTile(
                     title: categories[index],
                     category: categories[index],
-                    country: currentCountry, // Pass correct country
+                    country: currentCountry,
                   );
                 },
               ),
@@ -114,23 +158,39 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ).textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
+
             FutureBuilder<List<Article>>(
               future: trendingArticles,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
+                  return Center(
+                    child: Text('Failed to load news. Try again later.'),
+                  );
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No articles found.'));
+                  return const Center(
+                    child: Text('No articles found for this country.'),
+                  );
                 }
+
+                // Remove duplicate articles based on title
+                final uniqueArticles =
+                    snapshot.data!
+                        .fold<Map<String, Article>>({}, (map, article) {
+                          map[article.title] =
+                              article; // Only keeps the last occurrence
+                          return map;
+                        })
+                        .values
+                        .toList();
 
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: snapshot.data!.length,
+                  itemCount: uniqueArticles.length,
                   itemBuilder: (context, index) {
-                    return _TrendingArticleCard(article: snapshot.data![index]);
+                    return _TrendingArticleCard(article: uniqueArticles[index]);
                   },
                 );
               },
@@ -160,17 +220,14 @@ class _CategoryTile extends StatelessWidget {
       margin: const EdgeInsets.only(right: 12),
       child: InkWell(
         onTap: () {
-          String selectedCountry =
-              country.isNotEmpty ? country : 'ng'; // Default to Jamaica
-
           Navigator.push(
             context,
             MaterialPageRoute(
               builder:
                   (context) => CategoryScreen(
                     category: category,
-                    country: selectedCountry,
-                    selectedCountry: selectedCountry,
+                    country: country,
+                    selectedCountry: country,
                   ),
             ),
           );

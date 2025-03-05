@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
           return ArticleScreen(article: article);
         },
         DiscoverScreen.routeName:
-            (context) => const DiscoverScreen(selectedCountry: ''),
+            (context) => DiscoverScreen(selectedCountryCode: 'CountryCode'),
         '/category': (context) {
           final category = ModalRoute.of(context)!.settings.arguments as String;
           return CategoryScreen(
